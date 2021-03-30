@@ -28,11 +28,11 @@
 	const request3 = () => {
 		ethereum.request({
 			method: 'wallet_addEthereumChain', params: [{
-				chainId: '0x64',
-				chainName: 'RSK Testnet',
+				chainId: '0x539',
+				chainName: 'Swaps',
 				blockExplorerUrls: ['https://explorer.testnet.rsk.co'],
 				nativeCurrency: { symbol: 'tR-BTC', decimals: 18 },
-				rpcUrls: ['https://xdai-archive.blockscout.com']
+				rpcUrls: ['https://ganache-testnet.airswap-dev.codefi.network/']
 			}]
 		});
 	}
