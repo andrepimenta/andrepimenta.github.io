@@ -1,0 +1,137 @@
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		button {
+			margin: 20;
+			background-color: #4CAF50;
+			/* Green */
+			border: none;
+			color: white;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 12px;
+		}
+	</style>
+	<script>
+		async function sendTransactionLegacyGasPriceAndLimit() {
+			const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+			const transactionParameters = {
+				gasPrice: '0xBA43B7400', // customizable by user during MetaMask confirmation.
+				gas: '0x55F0', // customizable by user during MetaMask confirmation.
+				to: '0x0000000000000000000000000000000000000000', // Required except during contract publications.
+				from: ethereum.selectedAddress, // must match user's active address.
+				value: '0x5AF3107A4000', // Only required to send ether to the recipient from the initiating external account.
+				//chainId: '0x3', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
+			};
+
+			// txHash is a hex string
+			// As with any RPC call, it may throw an error
+			const txHash = await ethereum.request({
+				method: 'eth_sendTransaction',
+				params: [transactionParameters],
+			});
+		}
+
+		async function sendTransactionLegacyGasPrice() {
+			const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+			const transactionParameters = {
+				gasPrice: '0xBA43B7400', // customizable by user during MetaMask confirmation.
+				to: '0x0000000000000000000000000000000000000000', // Required except during contract publications.
+				from: ethereum.selectedAddress, // must match user's active address.
+				value: '0x5AF3107A4000', // Only required to send ether to the recipient from the initiating external account.
+			};
+
+			// txHash is a hex string
+			// As with any RPC call, it may throw an error
+			const txHash = await ethereum.request({
+				method: 'eth_sendTransaction',
+				params: [transactionParameters],
+			});
+		}
+
+		async function sendTransactionLegacyGasLimit() {
+			const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+			const transactionParameters = {
+				gas: '0x55F0', // customizable by user during MetaMask confirmation.
+				to: '0x0000000000000000000000000000000000000000', // Required except during contract publications.
+				from: ethereum.selectedAddress, // must match user's active address.
+				value: '0x5AF3107A4000', // Only required to send ether to the recipient from the initiating external account.
+			};
+
+			// txHash is a hex string
+			// As with any RPC call, it may throw an error
+			const txHash = await ethereum.request({
+				method: 'eth_sendTransaction',
+				params: [transactionParameters],
+			});
+		}
+
+		async function sendTransaction() {
+			const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+			const transactionParameters = {
+				to: '0x0000000000000000000000000000000000000000', // Required except during contract publications.
+				from: ethereum.selectedAddress, // must match user's active address.
+				value: '0x5AF3107A4000', // Only required to send ether to the recipient from the initiating external account.
+			};
+
+			// txHash is a hex string
+			// As with any RPC call, it may throw an error
+			const txHash = await ethereum.request({
+				method: 'eth_sendTransaction',
+				params: [transactionParameters],
+			});
+		}
+
+		async function sendTransactionEIPGAS() {
+			const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+			const transactionParameters = {
+				to: '0x0000000000000000000000000000000000000000', // Required except during contract publications.
+				from: ethereum.selectedAddress, // must match user's active address.
+				value: '0x5AF3107A4000', // Only required to send ether to the recipient from the initiating external account.,
+				maxFeePerGas: "0x12a05f2000",
+				maxPriorityFeePerGas: "0x2540be400"
+			};
+
+			// txHash is a hex string
+			// As with any RPC call, it may throw an error
+			const txHash = await ethereum.request({
+				method: 'eth_sendTransaction',
+				params: [transactionParameters],
+			});
+		}
+
+	</script>
+</head>
+
+<body>
+
+	<button onClick="sendTransactionLegacyGasPriceAndLimit()">
+		Send transaction with legacy gas
+		<p>GAS PRICE = 50 GWEI & GAS LIMIT = 22000</p>
+	</button>
+
+	<button onClick="sendTransactionLegacyGasPrice()">
+		Send transaction with legacy gas
+		<p>GAS PRICE = 50 GWEI</p>
+	</button>
+
+	<button onClick="sendTransactionLegacyGasLimit()">
+		Send transaction with legacy gas
+		<p>GAS LIMIT = 22000</p>
+	</button>
+
+	<button onClick="sendTransactionEIPGAS()">
+		Send transaction with EIP1559 GAS
+		<p>Max priority fee = 10 & Max fee = 80</p>
+	</button>
+
+	<button onClick="sendTransaction()">
+		Send transaction with no suggested gas
+	</button>
+</body>
+
+</html>
