@@ -1,4 +1,5 @@
 <html>
+
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
@@ -52,7 +53,7 @@
 			});
 		}
 
-		async function sendTransactionLegacyGasLimit() {
+		async function sendTransactionGasLimit() {
 			const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
 			const transactionParameters = {
 				gas: '0x55F0', // customizable by user during MetaMask confirmation.
@@ -109,7 +110,7 @@
 <body>
 
 	<button onClick="sendTransactionLegacyGasPriceAndLimit()">
-		Send transaction with legacy gas
+		Send transaction with suggested legacy gas
 		<p>GAS PRICE = 50 GWEI & GAS LIMIT = 22000</p>
 	</button>
 
@@ -118,14 +119,15 @@
 		<p>GAS PRICE = 50 GWEI</p>
 	</button>
 
-	<button onClick="sendTransactionLegacyGasLimit()">
-		Send transaction with legacy gas
-		<p>GAS LIMIT = 22000</p>
-	</button>
 
 	<button onClick="sendTransactionEIPGAS()">
-		Send transaction with EIP1559 GAS
+		Send transaction with suggested EIP1559 GAS
 		<p>Max priority fee = 10 & Max fee = 80</p>
+	</button>
+
+	<button onClick="sendTransactionGasLimit()">
+		Send transaction with suggested gas limit
+		<p>GAS LIMIT = 22000</p>
 	</button>
 
 	<button onClick="sendTransaction()">
