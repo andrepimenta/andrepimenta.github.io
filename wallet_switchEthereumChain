@@ -1,0 +1,66 @@
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		button {
+			margin: 20;
+			background-color: #4CAF50;
+			/* Green */
+			border: none;
+			color: white;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 12px;
+		}
+	</style>
+	<script>
+		async function switchEthereumMainnet() {
+			ethereum.request({method: 'wallet_switchEthereumChain', params: [{chainId: '0x1'}] } )
+		}
+
+		async function switchRopsten() {
+			ethereum.request({method: 'wallet_switchEthereumChain', params: [{chainId: '0x3'}] } )
+		}
+
+		async function addXDAI() {
+			ethereum.request({
+				method: 'wallet_addEthereumChain', params: [{
+					chainId: '0x64',
+					chainName: 'xDai',
+					blockExplorerUrls: ['https://blockscout.com/xdai/mainnet'],
+					nativeCurrency: { symbol: 'xDai', decimals: 18 },
+					rpcUrls: ['https://rpc.xdaichain.com/']
+				}]
+			})
+		}
+
+		async function switchXDAI() {
+		  ethereum.request({method: 'wallet_switchEthereumChain', params: [{chainId: '0x64'}] } )
+		}
+
+	</script>
+</head>
+
+<body>
+	<button onClick="switchEthereumMainnet()">
+		Switch Ethereum Mainnet
+	</button>
+
+
+	<button onClick="switchRopsten()">
+		Switch Ropsten
+	</button>
+
+	<button onClick="addXDAI()">
+		Add xDai chain
+	</button>
+
+	<button onClick="switchXDAI()">
+		Switch xDai chain
+	</button>
+</body>
+
+</html>
