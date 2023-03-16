@@ -37314,7 +37314,7 @@ var MetaMaskSDK = (function (e) {
     }
     enable() {
       if ((this.enabled && this.disable(), !this.noSleepVideo))
-        throw new Error("invalid video status");
+        console.log("invalid video status");
       if ((this.start(), Ok()))
         return navigator.wakeLock
           .request("screen")
